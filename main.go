@@ -2,12 +2,18 @@ package main
 
 import (
 	"github.com/nodias/go-ApmCommon/middleware"
+	"github.com/nodias/go-ApmCommon/model"
 	"github.com/nodias/go-ApmExam1/router"
 	"github.com/urfave/negroni"
 )
 
+var config model.TomlConfig
+
+func init() {
+	config.New("config.toml")
+}
 func main() {
-	n := negroni.New(negroni.HandlerFunc(middleware.NewLoggingMiddleware("C:/workspace/logs/go-ApmExam1.log")))
+	n := negroni.New(negroni.HandlerFunc(middleware.NewLoggingMiddleware(config.Logpaths["local"].Path)))
 	n.UseHandler(router.NewRouter())
-	n.Run(":7001")
+	n.Run(config.Servers["local1"].PORT)
 }

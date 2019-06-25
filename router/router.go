@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/nodias/go-ApmExam1/api"
+	"go-ApmExam1/api"
 	"go.elastic.co/apm/module/apmgorilla"
 )
 

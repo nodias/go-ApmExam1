@@ -1,6 +1,6 @@
 service = "go-ApmExam1"
 [logpaths]
-    logpath = "~/logs/go-ApmExam1.log"
+    logpath = "/home/logs/go-ApmExam1.log"
 
 [databases]
     [databases.postgres]

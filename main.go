@@ -4,7 +4,6 @@ import (
 	"context"
 	"go-ApmCommon/models"
 	"go-ApmCommon/shared/logger"
-	"go-ApmCommon/shared/middleware"
 	"go-ApmExam1/api"
 	"go-ApmExam1/router"
 
@@ -18,11 +17,11 @@ func init() {
 	config = *models.GetConfig()
 	logger.Init()
 	api.Init()
-	log := logger.New(context.Background())
-	log.Info(config)
 }
 func main() {
-	n := negroni.New(negroni.HandlerFunc(middleware.Logging(config.Logconfig.Logpath)))
+	log := logger.New(context.Background())
+	n := negroni.New()
 	n.UseHandler(router.NewRouter())
+	log.Info("go-ApmExam1 - Server On!")
 	n.Run(config.Servers["ApmExam1"].PORT)
 }
